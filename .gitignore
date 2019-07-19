@@ -105,6 +105,3 @@ venv.bak/
 
 # VSCode
 .vscode
-
-# Django
-static/
