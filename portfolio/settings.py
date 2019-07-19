@@ -25,7 +25,7 @@ SECRET_KEY = 'skg#$uch0p5fc3r0!g!5nl$5te_*z^_prh+06=$6xcemldoe92'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['kieuk.eu.pythonanywhere.com']
+ALLOWED_HOSTS = ['kieuk.eu.pythonanywhere.com', 'localhost']
 
 # Application definition
 
@@ -54,7 +54,7 @@ ROOT_URLCONF = 'portfolio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["portfolio/templates"],
+        'DIRS': [os.path.join("portfolio", "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
