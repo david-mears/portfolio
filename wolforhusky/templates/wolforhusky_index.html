@@ -2,8 +2,18 @@
 
 {% block page_content %}
 
-<p>Upload a wolf or a husky to classify:</p>
+<p>Upload an image to classify as a wolf 🐺 or a Siberian husky 🐶.</p>
 
-{{ form }}
-  
+<div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.image }}
+        <button type="submit" class="btn btn-success">Make prediction</button>
+    </form>
+</div>
+
+{% if img %}
+<img src="{{img}}" alt="Your uploaded picture">
+{% endif %}
+
 {% endblock %}

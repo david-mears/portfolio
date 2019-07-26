@@ -1,4 +1,8 @@
 from django import forms
+from .models import Image
 
-class UploadImageForm(forms.Form):
-    image_to_classify = forms.ImageField()
+class ImageForm(forms.ModelForm):
+
+    class Meta:
+        model = Image
+        fields = ['image']
