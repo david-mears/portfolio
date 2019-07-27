@@ -1,4 +1,4 @@
-from fastai import basic_train 
+from fastai import basic_train, vision
 import os
 
 from django.shortcuts import render
@@ -15,7 +15,8 @@ def index(request):
                 'learning_models',
             )
             learn = basic_train.load_learner(model_path)
-            prediction = learn.predict(basic_train.open_image(image_filepath))
+            image_for_fastai = vision.image.open_image(image_filepath)
+            prediction = learn.predict(image_for_fastai)
     else:
         form = ImageForm()
         image_obj = None
