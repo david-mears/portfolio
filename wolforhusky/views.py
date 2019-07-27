@@ -24,6 +24,7 @@ def index(request):
         form = ImageForm()
         image_obj = None
         predicted_class = None
+        confidence = None
     context = {
         'form': form,
         'image_obj': image_obj,
