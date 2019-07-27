@@ -12,8 +12,14 @@
     </form>
 </div>
 
-{% if image %}
-<img src="{{image.image.url}}" alt="Your uploaded picture">
+{% if image_obj %}
+<img src="{{image_obj.image.url}}" alt="Your uploaded picture">
+{% endif %}
+
+{% if prediction %}
+
+{{ prediction }}
+
 {% endif %}
 
 {% endblock %}

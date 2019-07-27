@@ -6,7 +6,9 @@ This is a little portfolio - construction ongoing.
 
 Git clone this repo, and cd into it.
 
-Create and activate your favourite virtual environment for Python. 
+Create and activate your favourite virtual environment for Python.
+
+At least on Windows, pytorch must be installed before fastai. Choose the correct installation [here](https://pytorch.org/get-started/locally/)
 
 Then:
 
@@ -18,5 +20,6 @@ pip install -r requirements.txt
 
 ```
 python manage.py migrate
+python manage.py collectstatic
 python manage.py runserver
 ```
