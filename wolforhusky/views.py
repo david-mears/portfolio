@@ -10,7 +10,6 @@ def index(request):
             # handle_file(request.FILES['file'])
     else:
         form = ImageForm()
-        print(form)
     context = {
         'form': form,
         # 'img': img,
