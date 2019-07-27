@@ -10,13 +10,12 @@ def index(request):
         if form.is_valid():
             image_obj = form.save()
             image_filepath = image_obj.image.path
-            print(image_filepath)
             model_path = os.path.join(
                 os.path.dirname(os.path.abspath(__file__)),
                 'learning_models',
             )
             learn = basic_train.load_learner(model_path)
-            prediction = learn.predict(image_filepath)
+            prediction = learn.predict(basic_train.open_image(image_filepath))
     else:
         form = ImageForm()
         image_obj = None
