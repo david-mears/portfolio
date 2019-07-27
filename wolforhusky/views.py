@@ -17,7 +17,7 @@ def index(request):
             learn = basic_train.load_learner(model_path)
             image_for_fastai = vision.image.open_image(image_filepath)
             prediction = learn.predict(image_for_fastai)
-            predicted_class = prediction[0].replace('_', ' ')
+            predicted_class = str(prediction[0]).replace('_', ' ')
             predicted_class_index = prediction[1].item()
             confidence = prediction[2][predicted_class_index]   
     else:
