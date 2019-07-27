@@ -27,7 +27,7 @@ def index(request):
     context = {
         'form': form,
         'image_obj': image_obj,
-        'predicted_class': ' '.join(map(predicted_class.split('_')),
-        'confidence': 'confidence'
+        'predicted_class': ' '.join(map(predicted_class.split('_'))),
+        'confidence': confidence,
     }
     return render(request, 'wolforhusky_index.html', context)
