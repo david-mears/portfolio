@@ -5,13 +5,12 @@ def index(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            # img = request.FILES['image']
-            # handle_file(request.FILES['file'])
+            image = form.save()
     else:
         form = ImageForm()
+        image = None
     context = {
         'form': form,
-        # 'img': img,
+        'image': image,
     }
     return render(request, 'wolforhusky_index.html', context)
