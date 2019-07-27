@@ -17,13 +17,17 @@ def index(request):
             learn = basic_train.load_learner(model_path)
             image_for_fastai = vision.image.open_image(image_filepath)
             prediction = learn.predict(image_for_fastai)
+            predicted_class = prediction[0]
+            predicted_class_index = prediction[1].item()
+            confidence = prediction[2][predicted_class_index]   
     else:
         form = ImageForm()
         image_obj = None
-        prediction = None
+        predicted_class = None
     context = {
         'form': form,
         'image_obj': image_obj,
-        'prediction': prediction,
+        'predicted_class': ' '.join(map(predicted_class.split('_')),
+        'confidence': 'confidence'
     }
     return render(request, 'wolforhusky_index.html', context)
