@@ -15,16 +15,27 @@
     </form>
 </div>
 
-{% if image_obj %}
-<img src="{{image_obj.image.url}}" alt="Your uploaded picture">
-{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            {% if image_obj %}
+            <img src="{{image_obj.image.url}}" alt="Your uploaded picture" class="img-thumbnail">
+            {% endif %}
+        </div>
+        <div class="col-sm">
+            {% if predicted_class and confidence > 90 %}
+            <p>I think this is a {{ predicted_class }}.</p>
+            <p>I'm {{confidence}}% sure.</p>
+            {% elif predicted_class %}
+            <p>Sorry, I wasn't able to tell with greater than 90% confidence.</p>
+            <p>As Vincent Warmerdam <a href="https://pydata.org/london2019/schedule/presentation/10/how-to-constrain-artificial-stupidity/">mentioned</a> at PyData conference 2019, we shouldn't be extrapolating about things far outside the original training data, even though models let you do so.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
-{% if predicted_class and confidence > 90 %}
-<p>I think this is a {{ predicted_class }}.</p>
-<p>I'm {{confidence}}% sure.</p>
-{% elif predicted_class %}
-<p>Sorry, I wasn't able to tell with greater than 90% confidence.</p>
-<p>As Vincent Warmerdam <a href="https://pydata.org/london2019/schedule/presentation/10/how-to-constrain-artificial-stupidity/">mentioned</a> at PyData conference 2019, we shouldn't be extrapolating about things far outside the original training data, even though models let you do so.</p>
-{% endif %}
+
+
+
 
 {% endblock %}
