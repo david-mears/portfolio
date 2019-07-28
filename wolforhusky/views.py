@@ -19,7 +19,7 @@ def index(request):
             prediction = learn.predict(image_for_fastai)
             predicted_class = str(prediction[0]).replace('_', ' ')
             predicted_class_index = prediction[1].item()
-            confidence = prediction[2][predicted_class_index]   
+            confidence = int(100*prediction[2][predicted_class_index].item())  
     else:
         form = ImageForm()
         image_obj = None
