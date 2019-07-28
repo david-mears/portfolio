@@ -34,4 +34,4 @@ def index(request):
 def load_and_predict(image_filepath, model_path):
     learn = basic_train.load_learner(model_path)
     image_for_fastai = vision.image.open_image(image_filepath)
-    return learn.predict(image_for_fastai, model_path)
+    return learn.predict(image_for_fastai)
