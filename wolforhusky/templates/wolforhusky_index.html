@@ -2,12 +2,12 @@
 
 {% block page_content %}
 
-<h3>Upload an image to classify as a wolf 🐺 or a Siberian husky 🐶.</h3>
+<h3 class="text-center">Upload an image to classify as a wolf 🐺 or a Siberian husky 🐶.</h3>
 
-<p>The model is ImageNet retrained on 872 images of wolves and Siberian huskies from Google Image Search.</p>
-<p>A good source of wolf/husky pics that it's unlikely to have been trained on is <a href="https://www.kimballstock.com">Kimball Stock</a>.</p>
+<p class="text-center">The model is ImageNet retrained on 872 images of wolves and Siberian huskies from Google Image Search.</p>
+<p class="text-center">A good source of wolf/husky pics that it's unlikely to have been trained on is <a href="https://www.kimballstock.com">Kimball Stock</a>.</p>
 
-<div>
+<div class="text-center">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.image }}
