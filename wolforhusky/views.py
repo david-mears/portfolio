@@ -14,7 +14,7 @@ def index(request):
                 os.path.dirname(os.path.abspath(__file__)),
                 'learning_models',
             )
-            prediction = load_and_predict(image_filepath)
+            prediction = load_and_predict(image_filepath, model_path)
             predicted_class = str(prediction[0]).replace('_', ' ')
             predicted_class_index = prediction[1].item()
             confidence = int(100*prediction[2][predicted_class_index].item())  
