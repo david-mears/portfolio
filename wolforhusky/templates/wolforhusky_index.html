@@ -1,5 +1,41 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-<h1>Hello, World!</h1>
+
+<h3 class="text-center">Upload an image to classify as a wolf 🐺 or a Siberian husky 🐶.</h3>
+
+<p class="text-center">The model is ImageNet retrained on 872 images of wolves and Siberian huskies from Google Image Search.</p>
+<p class="text-center">A good source of wolf/husky pics that it's unlikely to have been trained on is <a href="https://www.kimballstock.com">Kimball Stock</a>.</p>
+
+<div class="text-center">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.image }}
+        <button type="submit" class="btn btn-success">Make prediction</button>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            {% if image_obj %}
+            <img src="{{image_obj.image.url}}" alt="Your uploaded picture" class="img-thumbnail">
+            {% endif %}
+        </div>
+        <div class="col-sm">
+            {% if predicted_class and confidence > 90 %}
+            <p>I think this is a {{ predicted_class }}.</p>
+            <p>I'm {{confidence}}% sure.</p>
+            {% elif predicted_class %}
+            <p>Sorry, I wasn't able to tell with greater than 90% confidence.</p>
+            <p>As Vincent Warmerdam <a href="https://pydata.org/london2019/schedule/presentation/10/how-to-constrain-artificial-stupidity/">mentioned</a> at PyData conference 2019, we shouldn't be extrapolating about things far outside the original training data, even though models let you do so.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
 {% endblock %}
