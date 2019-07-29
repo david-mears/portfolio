@@ -16,6 +16,8 @@ Then:
 pip install -r requirements.txt
 ```
 
+Set the environment variables by creating .env at the root directory. This project doesn't need high security so I've just pasted the needed environment variable [here](https://pastebin.com/zmx7WxhW) to allow anyone to use the project.
+
 ## Local hosting
 
 ```
