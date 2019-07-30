@@ -14,20 +14,21 @@ def index(request):
                 os.path.dirname(os.path.abspath(__file__)),
                 'learning_models',
             )
-            prediction = get_prediction(image_obj.image.path, model_path)
-            predicted_class = str(prediction[0]).replace('_', ' ')
-            predicted_class_index = prediction[1].item()
-            confidence = int(100*prediction[2][predicted_class_index].item())
+            context['predicted_class'], context['confidence'] = get_prediction_data(
+                image_obj.image.path, model_path
+            )
             context['image_obj'] = image_obj
-            context['predicted_class'] = predicted_class
-            context['confidence'] = confidence
     else:
         form = ImageForm()
     context['form'] = form
 
     return render(request, 'wolforhusky_index.html', context)
 
-def get_prediction(image_filepath, model_path):
+def get_prediction_data(image_filepath, model_path):
     learn = basic_train.load_learner(model_path)
     image_for_fastai = vision.image.open_image(image_filepath)
-    return learn.predict(image_for_fastai)
+    prediction = learn.predict(image_for_fastai)
+    predicted_class = str(prediction[0]).replace('_', ' ')
+    predicted_class_index = prediction[1].item()
+    confidence = int(100*prediction[2][predicted_class_index].item())
+    return predicted_class, confidence
