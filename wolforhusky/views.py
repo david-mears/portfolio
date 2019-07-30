@@ -5,6 +5,7 @@ from django.shortcuts import render
 from .forms import ImageForm
 
 def index(request):
+    context = {}
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
@@ -16,18 +17,14 @@ def index(request):
             prediction = get_prediction(image_obj.image.path, model_path)
             predicted_class = str(prediction[0]).replace('_', ' ')
             predicted_class_index = prediction[1].item()
-            confidence = int(100*prediction[2][predicted_class_index].item())  
+            confidence = int(100*prediction[2][predicted_class_index].item())
+            context['image_obj'] = image_obj
+            context['predicted_class'] = predicted_class
+            context['confidence'] = confidence
     else:
         form = ImageForm()
-        image_obj = None
-        predicted_class = None
-        confidence = None
-    context = {
-        'form': form,
-        'image_obj': image_obj,
-        'predicted_class': predicted_class,
-        'confidence': confidence,
-    }
+    context['form'] = form
+
     return render(request, 'wolforhusky_index.html', context)
 
 def get_prediction(image_filepath, model_path):
